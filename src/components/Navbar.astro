@@ -1,0 +1,66 @@
+---
+import Container from "./Container.astro";
+---
+
+<nav class="nav">
+  <Container>
+    <div class="nav-container">
+      <div>
+        <a href="/"><img src="/logo_po.png" alt="logo"/></a>
+      </div>
+      <ul class="nav-items">
+        <li><a href="/projects" class="nav-link">Projects</a></li>
+        <li><a href="/blog" class="nav-link">Blog</a></li>
+        <li><a href="#footer" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </Container>
+</nav>
+
+<style>
+  nav {
+    background: var(--secondary);
+
+    img {
+      height: 32px;
+    }
+
+    .nav-container {
+      display: flex;
+      padding: 24px 0;
+      justify-content: space-between;
+      align-items: center;
+
+      .nav-items {
+        list-style-type: none;
+        display: flex;
+        gap: 24px;
+
+        a {
+          text-decoration: none;
+          color: var(--dark);
+          font-size: 18px;
+        }
+      }
+      .nav-link {
+        font-weight: 500;
+        transition: color 0.3s ease;
+        padding: 8px 16px;
+        border-radius: 4px;
+        &:hover {
+          color: #476686;
+          background-color: rgba(0, 0, 0, 0.05);
+        }
+      }
+
+
+      @media screen and (max-width: 500px) {
+        & {
+          flex-direction: column;
+          gap: 16px;
+        }
+        
+      }
+    }
+  }
+</style>

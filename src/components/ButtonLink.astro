@@ -1,0 +1,68 @@
+---
+interface Props {
+    href: string;
+    text: string;
+    variant?: 'primary' | 'secondary';
+    isDownload?: boolean;
+    target?: '_blank' | '_self';
+}
+
+const { href, text, variant = 'primary', isDownload, target = '_self' } = Astro.props;
+---
+
+{isDownload &&
+  <a class={`button-link ${variant}`} target={target} download href={href}>{text}</a>
+}
+
+{!isDownload &&
+  <a class={`button-link ${variant}`} target={target} href={href}>{text}</a>
+}
+
+<style>
+    a {
+      padding: 14px 32px;
+      border-radius: 8px;
+      display: block;
+      underline: none;
+      width: 230px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    @media screen and (max-width: 600px) {
+      a {
+        font-size: 14px;
+        width: 100%;
+      }
+        
+    }
+
+    .primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .secondary {
+      background: white;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+
+      .button-link.primary:hover {
+        background: var(--primary-dark, #0056b3);
+        color: #fff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      }
+      .button-link.secondary:hover {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      }
+
+
+</style>

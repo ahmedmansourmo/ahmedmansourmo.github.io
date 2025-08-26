@@ -1,0 +1,75 @@
+---
+import Section from "../components/Section.astro";
+import Layout from "../layouts/Layout.astro";
+import contactLinks from "../data/contactLinks.json";
+import { Github, Mail, Linkedin, X, Phone } from '@lucide/astro'
+const title = "Contact";
+
+---
+
+<Layout title="Contact">
+    <Section>
+      <h1>{title}</h1>  
+      <div class="social-container">
+
+       { contactLinks.map((item) => (
+        <div class="social-item">
+        <a href={item.url} class="social-link" target="_blank">
+          {item.platform === "GitHub" && <Github />}
+          {item.platform === "Email" && <Mail />}
+          {item.platform === "LinkedIn" && <Linkedin />}
+          {item.platform === "X" && <X />}
+          {item.platform === "Phone" && <Phone />}
+          <span class="social-label">{item.platform}</span>
+        </a>
+      </div>
+        ))}
+      </div>
+  </Section>
+</Layout>
+   <style>
+      .social-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+
+      .social-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1.125rem;
+        transition: color 0.2s ease-in-out, transform 0.15s;
+      }
+
+      /* Make Lucide SVG icons a consistent size and inherit the link color */
+      .social-link svg {
+        width: 1.25rem; /* 20px */
+        height: 1.25rem;
+        flex-shrink: 0;
+        display: inline-block;
+        vertical-align: middle;
+        color: currentColor; /* Lucide uses currentColor for stroke/fill */
+      }
+
+      .social-link .social-label {
+        line-height: 1;
+      }
+
+      .social-link:hover {
+        color: #3b82f6;
+        transform: translateY(-1px);
+      }
+
+      @media (min-width: 768px) {
+        .social-container {
+      flex-direction: row;
+      gap: 2rem;
+        }
+      }
+    </style>
