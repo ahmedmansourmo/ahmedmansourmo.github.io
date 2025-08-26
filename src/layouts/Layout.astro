@@ -17,17 +17,35 @@ import Footer from "../components/Footer.astro";
       rel="stylesheet"
     />
     <meta name="generator" content={Astro.generator} />
-    <!-- <title>Portfolio</title> -->
   </head>
   <body>
     <Navbar/>
     <slot />
   <Footer />
 
-  <!-- Back to Top Button -->
   <button id="back-to-top" class="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
 
-  <style>
+ 
+
+  <script>
+    (function () {
+      const btn = document.getElementById('back-to-top');
+      if (!btn) return;
+      const toggle = () => {
+        const y = window.scrollY || document.documentElement.scrollTop || 0;
+        if (y > 300) btn.classList.add('show'); else btn.classList.remove('show');
+      };
+      window.addEventListener('scroll', toggle, { passive: true });
+      window.addEventListener('load', toggle);
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
+  </body>
+</html>
+
+ <style>
     .back-to-top {
       position: fixed;
       right: 20px;
@@ -64,21 +82,3 @@ import Footer from "../components/Footer.astro";
       }
     }
   </style>
-
-  <script>
-    (function () {
-      const btn = document.getElementById('back-to-top');
-      if (!btn) return;
-      const toggle = () => {
-        const y = window.scrollY || document.documentElement.scrollTop || 0;
-        if (y > 300) btn.classList.add('show'); else btn.classList.remove('show');
-      };
-      window.addEventListener('scroll', toggle, { passive: true });
-      window.addEventListener('load', toggle);
-      btn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    })();
-  </script>
-  </body>
-</html>
