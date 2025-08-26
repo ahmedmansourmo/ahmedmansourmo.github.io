@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/png" href="/wb_po.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><meta name="generator" content="Astro v5.5.4"><link rel="stylesheet" href="/_astro/blog.5MgmFg5K.css">
+<style>.post[data-astro-cid-4sn4zg3r]{.post-image{width:100%;object-fit:cover;margin-bottom:40px;border-radius:10px}.post-title{margin-bottom:16px}.post-date{font-size:20px;color:var(--light);margin-bottom:30px}h2{margin-bottom:20px;margin-top:30px}}
+section[data-astro-cid-sh445jdo]{padding:80px 0;&.dark{background:var(--secondary)}@media (max-width: 1000px){padding:40px 0}}
+</style></head> <body data-astro-cid-sckkx6r4> <nav class="nav" data-astro-cid-5blmo7yk> <div class="container" data-astro-cid-d6puh33w>  <div class="nav-container" data-astro-cid-5blmo7yk> <div data-astro-cid-5blmo7yk> <a href="/" data-astro-cid-5blmo7yk><img src="/logo_po.png" alt="logo" data-astro-cid-5blmo7yk></a> </div> <ul class="nav-items" data-astro-cid-5blmo7yk> <li data-astro-cid-5blmo7yk><a href="/projects" class="nav-link" data-astro-cid-5blmo7yk>Projects</a></li> <li data-astro-cid-5blmo7yk><a href="/blog" class="nav-link" data-astro-cid-5blmo7yk>Blog</a></li> <li data-astro-cid-5blmo7yk><a href="#footer" class="nav-link" data-astro-cid-5blmo7yk>Contact</a></li> </ul> </div>  </div>  </nav>   <section class data-astro-cid-sh445jdo> <div class="container" data-astro-cid-d6puh33w>   <div class="post" data-astro-cid-4sn4zg3r> <img src="/images/posts/post-1.jpg" alt="SSR vs CSR — Which Rendering Strategy Should You Use?" class="post-image" data-astro-cid-4sn4zg3r> <h1 class="post-title" data-astro-cid-4sn4zg3r>SSR vs CSR — Which Rendering Strategy Should You Use?</h1> <p class="post-date" data-astro-cid-4sn4zg3r>2025-08-24</p> <p>Understanding rendering strategies helps you deliver fast, SEO-friendly, and maintainable web apps. Here’s a concise guide to SSR vs CSR.</p>
+<h2 id="what-is-csr-client-side-rendering">What is CSR (Client-Side Rendering)?</h2>
+<p>The server sends a minimal HTML shell and a JavaScript bundle. The browser downloads JS, builds the UI, and fetches data. First paint can be fast, but content may be blank until hydration completes.</p>
+<p>Pros:</p>
+<ul>
+<li>Great for rich, highly interactive apps</li>
+<li>Can cache static assets on CDN</li>
+<li>Simple hosting (static + API)</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>Slower Time to First Byte (TTFB) and First Contentful Paint (FCP)</li>
+<li>SEO depends on prerendering/bot support</li>
+<li>Heavier JS on the client</li>
+</ul>
+<p>CSR example (React):</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> Products</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">items</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setItems</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> React.</span><span style="color:#B392F0">useState</span><span style="color:#E1E4E8">([]);</span></span>
+<span class="line"><span style="color:#E1E4E8">  React.</span><span style="color:#B392F0">useEffect</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    fetch</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'/api/products'</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">r</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> r.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">()).</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">(setItems);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }, []);</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> items.</span><span style="color:#B392F0">map</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">p</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> key</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{p.id}>{p.name}&#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">>);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="what-is-ssr-server-side-rendering">What is SSR (Server-Side Rendering)?</h2>
+<p>HTML is rendered on the server per request (or edge) and sent to the browser. Users see content earlier; hydration attaches interactivity on the client.</p>
+<p>Pros:</p>
+<ul>
+<li>Better FCP/LCP and perceived performance</li>
+<li>SEO-friendly out of the box</li>
+<li>Personalized content at request time</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>Higher server cost/complexity</li>
+<li>Longer TTFB if server/data is slow</li>
+<li>Still ships client JS for interactivity</li>
+</ul>
+<p>SSR example (Next.js):</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="jsx"><code><span class="line"><span style="color:#6A737D">// pages/products.js (Next 12/13 pages router)</span></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> async</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> getServerSideProps</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> res</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> fetch</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'https://api.example.com/products'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> items</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> res.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> { props: { items } };</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> Page</span><span style="color:#E1E4E8">({ </span><span style="color:#FFAB70">items</span><span style="color:#E1E4E8"> }) {</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> items.</span><span style="color:#B392F0">map</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">p</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> key</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{p.id}>{p.name}&#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">>);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="performance-and-seo">Performance and SEO</h2>
+<ul>
+<li>CSR: use code-splitting, lazy, and route-based bundles; prefetch data and cache aggressively.</li>
+<li>SSR: stream HTML, cache at the edge, and avoid slow blocking calls. Hydrate only what’s interactive.</li>
+</ul>
+<p>Key metrics: TTFB (server), FCP/LCP (paint), TTI (hydration/JS), CLS (layout stability).</p>
+<h2 id="when-to-choose-which">When to choose which?</h2>
+<ul>
+<li>Choose CSR when: app is SPA-like, authentication heavy, and SEO is limited or handled via prerendering.</li>
+<li>Choose SSR when: SEO matters, content must be visible fast, or you need per-request personalization.</li>
+</ul>
+<h2 id="hybrids-and-modern-options">Hybrids and modern options</h2>
+<ul>
+<li>SSG/ISR: pre-render at build time and revalidate for scale.</li>
+<li>Islands/Partial Hydration (Astro): render most HTML on server, hydrate only interactive islands—great DX and performance.</li>
+<li>Edge SSR/Streaming: reduce latency and show content progressively.</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>There’s no one-size-fits-all. Use SSR for content-first and SEO; use CSR for app-first interactivity. Many stacks mix both for the best user experience.</p> </div>   </div>  </section>   <footer class="footer" id="footer" data-astro-cid-sz7xmlte> <div class="container" data-astro-cid-d6puh33w>  <div class="footer__inner" data-astro-cid-sz7xmlte> <div class="footer__brand" data-astro-cid-sz7xmlte> <p class="footer__text" data-astro-cid-sz7xmlte>© 2025 Ahmed Mansour. All rights reserved.</p> </div> <ul class="footer__links" data-astro-cid-sz7xmlte> <li data-astro-cid-sz7xmlte> <a href="https://github.com/ahmedmansour200" target="_blank" rel="noopener noreferrer" data-astro-cid-sz7xmlte> GitHub </a> </li><li data-astro-cid-sz7xmlte> <a href="mailto:ahmedmansourmohamed99@gmail.com" data-astro-cid-sz7xmlte> Email </a> </li><li data-astro-cid-sz7xmlte> <a href="https://www.linkedin.com/in/ahmed-mansour-6517b4229?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" data-astro-cid-sz7xmlte> LinkedIn </a> </li><li data-astro-cid-sz7xmlte> <a href="tel:+201008752736" data-astro-cid-sz7xmlte> Phone </a> </li> </ul> </div>  </div>  </footer>  <button id="back-to-top" class="back-to-top" aria-label="Back to top" title="Back to top" data-astro-cid-sckkx6r4>↑</button> <script type="module">(function(){const o=document.getElementById("back-to-top");if(!o)return;const e=()=>{(window.scrollY||document.documentElement.scrollTop||0)>300?o.classList.add("show"):o.classList.remove("show")};window.addEventListener("scroll",e,{passive:!0}),window.addEventListener("load",e),o.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})})})();</script> </body> </html>  <title>SSR vs CSR — Which Rendering Strategy Should You Use?
+  <meta name="description" content="A practical comparison of Server-Side Rendering (SSR) and Client-Side Rendering (CSR)—how they work, trade-offs, performance, SEO, and when to choose each.">
+
+
+</title>
