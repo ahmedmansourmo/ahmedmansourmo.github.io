@@ -23,7 +23,24 @@
     --default-transition-duration:.15s;
     --default-transition-timing-function:cubic-bezier(.4,0,.2,1);
     --default-font-family:var(--font-sans);
-    --default-mono-font-family:var(--font-mono)
+    --default-mono-font-family:var(--font-mono);
+    
+    /* Enhanced Custom Properties for Better Design System */
+    --primary: #402eff;
+    --primary-dark: #2f21d3;
+    --primary-light: rgba(64, 46, 255, 0.1);
+    --secondary: #f8f9ff;
+    --white: #fff;
+    --dark: #21243d;
+    --light: #8695a4;
+    --surface: #ffffff;
+    --accent: #0b7285;
+    --border-radius: 12px;
+    --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.04);
+    --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-heavy: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --nav-padding: 16px;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
@@ -295,41 +312,60 @@ pre{border-radius:5px;padding:16px}
 }
 
 /* ===============================
-   NAVIGATION STYLES
+   NAVBAR STYLES - ENHANCED VERSION
    =============================== */
 .nav[data-astro-cid-5blmo7yk] {
   background: var(--secondary);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   position: sticky;
   top: 0;
   z-index: 1000;
-  backdrop-filter: blur(10px);
-  box-shadow: var(--shadow-light);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav[data-astro-cid-5blmo7yk]:hover {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Brand/Logo Styling */
+.nav[data-astro-cid-5blmo7yk] .brand[data-astro-cid-5blmo7yk] {
+  position: relative;
+  z-index: 10;
 }
 
 .nav[data-astro-cid-5blmo7yk] img[data-astro-cid-5blmo7yk] {
-  height: 32px;
+  height: 36px;
   display: block;
-  transition: transform 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .nav[data-astro-cid-5blmo7yk] img[data-astro-cid-5blmo7yk]:hover {
-  transform: scale(1.05);
+  transform: scale(1.05) translateY(-1px);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
 
+/* Navigation Container */
 .nav-container[data-astro-cid-5blmo7yk] {
   display: flex;
-  padding: var(--nav-padding) 0;
+  padding: 16px 0;
   justify-content: space-between;
   align-items: center;
   position: relative;
-  min-height: 60px;
+  min-height: 70px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
+/* Navigation Items */
 .nav-items[data-astro-cid-5blmo7yk] {
   list-style: none;
   display: flex;
-  gap: 32px;
+  gap: 8px;
   margin: 0;
   padding: 0;
   align-items: center;
@@ -338,65 +374,94 @@ pre{border-radius:5px;padding:16px}
 .nav-items[data-astro-cid-5blmo7yk] a[data-astro-cid-5blmo7yk] {
   text-decoration: none;
   color: var(--dark);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
+  letter-spacing: 0.3px;
 }
 
+/* Enhanced Navigation Links */
 .nav-link[data-astro-cid-5blmo7yk] {
   font-weight: 500;
-  transition: all 0.3s ease;
-  padding: 12px 18px;
-  border-radius: var(--border-radius);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 12px 20px;
+  border-radius: 12px;
   position: relative;
   overflow: hidden;
+  background: transparent;
+  border: 2px solid transparent;
+}
+
+.nav-link[data-astro-cid-5blmo7yk]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(64, 46, 255, 0.1), rgba(64, 46, 255, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 10px;
+  z-index: -1;
 }
 
 .nav-link[data-astro-cid-5blmo7yk]:hover {
   color: var(--primary);
-  background-color: rgba(64, 46, 255, 0.08);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  border-color: rgba(64, 46, 255, 0.15);
+  box-shadow: 0 6px 20px rgba(64, 46, 255, 0.15);
+}
+
+.nav-link[data-astro-cid-5blmo7yk]:hover::before {
+  opacity: 1;
 }
 
 .nav-link[data-astro-cid-5blmo7yk]:active {
-  transform: translateY(0);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(64, 46, 255, 0.12);
 }
 
-/* Mobile Navigation Toggle */
+/* Mobile Navigation Toggle - Enhanced */
 .nav-toggle[data-astro-cid-5blmo7yk] {
   display: none;
   background: transparent;
-  border: none;
+  border: 2px solid transparent;
   cursor: pointer;
-  padding: 8px;
-  border-radius: 6px;
-  transition: background-color 0.2s ease;
+  padding: 10px;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 50;
 }
 
 .nav-toggle[data-astro-cid-5blmo7yk]:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(64, 46, 255, 0.05);
+  border-color: rgba(64, 46, 255, 0.1);
+  transform: scale(1.05);
 }
 
 .nav-toggle[data-astro-cid-5blmo7yk]:focus {
-  outline: 2px solid rgba(64, 46, 255, 0.25);
-  outline-offset: 2px;
+  outline: none;
+  border-color: rgba(64, 46, 255, 0.3);
+  box-shadow: 0 0 0 3px rgba(64, 46, 255, 0.1);
 }
 
 .nav-toggle[data-astro-cid-5blmo7yk] .bar[data-astro-cid-5blmo7yk] {
   display: block;
-  width: 24px;
+  width: 26px;
   height: 3px;
   background: var(--dark);
-  margin: 4px 0;
-  transition: all 0.3s ease;
-  border-radius: 2px;
+  margin: 5px 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 3px;
+  transform-origin: center;
 }
 
-/* Mobile Navigation Styles */
+/* Mobile Navigation Styles - Enhanced */
 @media screen and (max-width: 768px) {
   .nav-container[data-astro-cid-5blmo7yk] {
-    flex-direction: row;
-    gap: 8px;
-    align-items: center;
+    padding: 14px 20px;
+    min-height: 65px;
   }
   
   .nav-toggle[data-astro-cid-5blmo7yk] {
@@ -405,100 +470,163 @@ pre{border-radius:5px;padding:16px}
   
   .nav-items[data-astro-cid-5blmo7yk] {
     position: absolute;
-    left: 0;
-    right: 0;
-    top: calc(100% + 8px);
+    left: 20px;
+    right: 20px;
+    top: calc(100% + 12px);
     margin: 0;
-    padding: 20px;
-    background: var(--secondary);
+    padding: 24px;
+    background: rgba(248, 249, 255, 0.95);
+    backdrop-filter: blur(20px);
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     display: none;
-    box-shadow: var(--shadow-medium);
-    border-radius: var(--border-radius);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     z-index: 40;
   }
   
   .nav-items[data-astro-cid-5blmo7yk].show {
     display: flex;
-    animation: slideDown 0.3s ease;
+    animation: slideDownMobile 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   .nav-link[data-astro-cid-5blmo7yk] {
     width: 100%;
     text-align: center;
-    padding: 14px 20px;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-size: 16px;
+    margin: 2px 0;
   }
   
   .nav-toggle[data-astro-cid-5blmo7yk].open .bar[data-astro-cid-5blmo7yk]:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+    transform: translateY(8px) rotate(45deg);
   }
   
   .nav-toggle[data-astro-cid-5blmo7yk].open .bar[data-astro-cid-5blmo7yk]:nth-child(2) {
     opacity: 0;
+    transform: translateX(-20px);
   }
   
   .nav-toggle[data-astro-cid-5blmo7yk].open .bar[data-astro-cid-5blmo7yk]:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: translateY(-8px) rotate(-45deg);
   }
 }
 
-@keyframes slideDown {
+@media screen and (max-width: 480px) {
+  .nav-container[data-astro-cid-5blmo7yk] {
+    padding: 12px 16px;
+  }
+  
+  .nav-items[data-astro-cid-5blmo7yk] {
+    left: 16px;
+    right: 16px;
+    padding: 20px;
+  }
+}
+
+/* Enhanced Animation Keyframes */
+@keyframes slideDownMobile {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-20px) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 /* ===============================
-   FOOTER STYLES
+   FOOTER STYLES - ENHANCED VERSION
    =============================== */
 .footer[data-astro-cid-sz7xmlte] {
-  background: var(--secondary);
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-  margin-top: 80px;
+  background: linear-gradient(135deg, var(--secondary) 0%, rgba(248, 249, 255, 0.95) 100%);
+  border-top: 1px solid rgba(64, 46, 255, 0.08);
+  margin-top: 100px;
   width: 100%;
-  padding: 40px 0;
+  padding: 50px 0 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer[data-astro-cid-sz7xmlte]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  opacity: 0.3;
 }
 
 .footer__inner[data-astro-cid-sz7xmlte] {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 32px;
+  gap: 40px;
   flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
 }
 
+/* Enhanced Brand Section */
 .footer__brand[data-astro-cid-sz7xmlte] {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.footer__home[data-astro-cid-sz7xmlte] {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer__home[data-astro-cid-sz7xmlte]:hover {
+  transform: scale(1.05) translateY(-2px);
 }
 
 .footer__home[data-astro-cid-sz7xmlte] img[data-astro-cid-sz7xmlte] {
-  height: 28px;
+  height: 32px;
   display: block;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+  transition: filter 0.3s ease;
 }
 
+.footer__home[data-astro-cid-sz7xmlte]:hover img[data-astro-cid-sz7xmlte] {
+  filter: drop-shadow(0 4px 12px rgba(64, 46, 255, 0.2));
+}
+
+/* Enhanced Text Styling */
 .footer__text[data-astro-cid-sz7xmlte] {
   color: var(--light);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.6;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  max-width: 300px;
 }
 
+.footer__brand[data-astro-cid-sz7xmlte]:hover .footer__text[data-astro-cid-sz7xmlte] {
+  opacity: 1;
+}
+
+/* Enhanced Navigation Links */
 .footer__links[data-astro-cid-sz7xmlte] {
   list-style: none;
   display: flex;
-  gap: 24px;
+  gap: 12px;
   padding: 0;
   margin: 0;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .footer__links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte] {
@@ -506,43 +634,93 @@ pre{border-radius:5px;padding:16px}
   color: var(--dark);
   font-weight: 500;
   font-size: 15px;
-  padding: 8px 14px;
-  border-radius: var(--border-radius);
-  transition: all 0.3s ease;
+  padding: 12px 18px;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  background: rgba(255, 255, 255, 0.4);
+  border: 2px solid transparent;
+  backdrop-filter: blur(10px);
+}
+
+.footer__links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(64, 46, 255, 0.1), rgba(64, 46, 255, 0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 10px;
+  z-index: -1;
 }
 
 .footer__links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:hover {
   color: var(--primary);
-  background: rgba(64, 46, 255, 0.08);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  border-color: rgba(64, 46, 255, 0.2);
+  box-shadow: 0 8px 25px rgba(64, 46, 255, 0.15);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.footer__links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:hover::before {
+  opacity: 1;
 }
 
 .footer__links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:active {
-  transform: translateY(0);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(64, 46, 255, 0.12);
 }
 
-/* Footer Responsive Design */
+/* Footer Responsive Design - Enhanced */
 @media (max-width: 768px) {
   .footer[data-astro-cid-sz7xmlte] {
-    padding: 32px 0;
-    margin-top: 60px;
+    padding: 40px 0 32px;
+    margin-top: 80px;
   }
   
   .footer__inner[data-astro-cid-sz7xmlte] {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 24px;
+    gap: 32px;
+    padding: 0 20px;
+  }
+  
+  .footer__brand[data-astro-cid-sz7xmlte] {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .footer__text[data-astro-cid-sz7xmlte] {
+    text-align: center;
+    max-width: 400px;
   }
   
   .footer__links[data-astro-cid-sz7xmlte] {
     justify-content: center;
-    gap: 16px;
+    gap: 8px;
+  }
+  
+  .footer__links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte] {
+    padding: 10px 16px;
+    font-size: 14px;
   }
 }
 
 @media (max-width: 480px) {
+  .footer[data-astro-cid-sz7xmlte] {
+    padding: 32px 0 24px;
+    margin-top: 60px;
+  }
+  
+  .footer__inner[data-astro-cid-sz7xmlte] {
+    padding: 0 16px;
+    gap: 24px;
+  }
+  
   .footer__links[data-astro-cid-sz7xmlte] {
     flex-direction: column;
     width: 100%;
@@ -552,8 +730,15 @@ pre{border-radius:5px;padding:16px}
   .footer__links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte] {
     display: block;
     width: 100%;
+    max-width: 280px;
     text-align: center;
-    padding: 12px 16px;
+    padding: 14px 20px;
+    margin: 0 auto;
+  }
+  
+  .footer__text[data-astro-cid-sz7xmlte] {
+    font-size: 14px;
+    max-width: 320px;
   }
 }
 
